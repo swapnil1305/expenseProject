@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<h2>EXPENSE TRACKER</h2>
+<body>
+    <form onsubmit="addNewExpense(event)">
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" required/><br>
+        <label for="description">Description</label>
+        <input type="text" name="description" required/><br>
+        <label for="category">Choose a category</label>
+        <select name="category" id="category">
+            <option value="fuel">Fuel</option>
+            <option value="food">Food</option>
+            <option value="Shopping">Shopping</option>
+            <option value="bills">Bills</option>
+            <option value="entertainment">Entertainment</option>
+        </select><br>
+        <button>Add Expense</button>
+    </form>
+    <ul id="listOfExpenses"></ul>
+    <script src="expense.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+</body>
+</html>
