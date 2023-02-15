@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 function isstringinvalid(string){
     if(string == undefined || string.length === 0){
@@ -10,7 +11,7 @@ function isstringinvalid(string){
     }
 }
 
-exports.signup = async(req, res, next) => {
+const signup = async(req, res, next) => {
     try{
         const {name, email, password} = req.body;
         if (isstringinvalid(name) || isstringinvalid(email) || isstringinvalid(password)){
@@ -18,7 +19,7 @@ exports.signup = async(req, res, next) => {
         }
         const saltrounds = 10;
         bcrypt.hash(password, saltrounds, async (err, hash) => {
-            console.log(err);
+            //console.log(err);
             await User.create({name, email, password:hash})
         res.status(201).json({message: "successfully created new user"})
         })
@@ -27,20 +28,24 @@ exports.signup = async(req, res, next) => {
     }
 }
 
-exports.login = async(req, res, next) => {
+function generateAccessToken(id, name){
+    return jwt.sign({userId : id, name: name} , 'secretkey');
+}
+
+const login = async(req, res, next) => {
     try{
         const{email, password} = req.body;
         if (isstringinvalid(email) || isstringinvalid(password)){
-            return res.status(400).json({message:"Email or Password is missing!!"})
+            return res.status(400).json({message:"Email or Password is missing!!", success: false})
         }
         const user = await User.findAll({ where: {email}})
         if(user.length > 0){
             bcrypt.compare(password, user[0].password, (err, result) => {
-                if(err){
+                if(err){  
                     throw new Error('Something went wrong')
                 }
                 if (result === true){
-                    res.status(200).json({success: true, message: "User logged in successfully"})   
+                    return res.status(200).json({success: true, message: "User logged in successfully",token: generateAccessToken(user[0].id, user[0].name)})   
                 }
                 else{
                     return res.status(400).json({success: false, message: "Password is incorrect"})
@@ -52,4 +57,9 @@ exports.login = async(req, res, next) => {
     }catch(err){
         res.status(500).json({message: err, success: false})
     }
+}
+
+module.exports = {
+    signup,
+    login
 }

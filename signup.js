@@ -1,17 +1,17 @@
 async function signup(e) {
     try{
         e.preventDefault();
-        console.log(e.target.email.value);
 
         const signUpDetails = {
             name: e.target.name.value,
             email: e.target.email.value,
             password: e.target.password.value
         }
-        console.log(signUpDetails);
+        //console.log(signUpDetails);
         const response = await axios.post('http://localhost:4000/user/signup', signUpDetails)
         if(response.status === 201){
-            window.location.href = "../login/login.html"
+            alert(response.data.message)
+            window.location.href = "./login.html"
         } else {
             throw new Error('Failed to login')
         }
