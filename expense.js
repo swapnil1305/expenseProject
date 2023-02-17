@@ -46,3 +46,32 @@ async function deleteExpense(e, expenseid) {
         const expenseElemId = `expense-${expenseid}`;
         document.getElementById(expenseElemId).remove();
     }
+
+document.getElementById("rzp-button1").onclick = async function(e){
+    const token = localStorage.getItem('token')
+    const response = await axios.get('http://localhost:4000/purchase/premiummembership',{ headers: {"Authorization" : token}})
+    console.log(response);
+    var options = 
+    {
+        "key_id": response.data.key_id,
+        "order_id": response.data.order.id,
+        "handler": async function (response) {
+            await axios.post('http://localhost:4000/purchase/updatetransactionstatus',{
+               order_id: options.order_id,
+               payment_id: response.razorpay_payment_id,
+            },{headers: {"Authorization": token }})
+
+            alert('You are a Premium User Now')
+        },
+    };
+
+const rzp1 = new Razorpay(options);
+rzp1.open();
+e.preventDefault();
+
+rzp1.on('payment.failed', function (response){
+    console.log(response);
+    alert('Something went wrong')
+})
+}
+
