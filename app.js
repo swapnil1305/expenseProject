@@ -6,12 +6,16 @@ const sequelize = require('./util/database');
 const User = require('./models/user');
 const Expense = require('./models/expense');
 const Order = require('./models/order')
+//const dotenv = require('.env');
 
 const userRoutes = require('./routes/user');
 const expenseRoutes = require('./routes/expense')
 const purchaseRoutes = require('./routes/purchase');
+const premiumFeatureRoutes = require('./routes/premiumFeature');
 
 const app = express();
+
+//dotenv.config();
 
 app.use(cors());
 
@@ -20,7 +24,8 @@ app.use(express.json());  //for handling jsons
 
 app.use('/user', userRoutes);
 app.use('/expense', expenseRoutes);
-app.use('/purchase', purchaseRoutes)
+app.use('/purchase', purchaseRoutes);
+app.use('/premium', premiumFeatureRoutes);
 
 
 User.hasMany(Expense);
