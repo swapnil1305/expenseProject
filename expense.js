@@ -74,7 +74,6 @@ async function deleteExpense(e, expenseid) {
             console.log(userLeaderBoardArray)
 
             var leaderboardElem = document.getElementById('leaderboard')
-            console.log(leaderboardElem)
             leaderboardElem.innerHTML += '<h1> Leader Board <h1>'
             userLeaderBoardArray.data.forEach((userDetails) => {
                 leaderboardElem.innerHTML += `<li>Name -${userDetails.name} Total Expenses -${userDetails.total_cost}</li>`
