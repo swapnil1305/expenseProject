@@ -63,7 +63,7 @@ async function deleteExpense(e, expenseid) {
     removeExpenseFromScreen(expenseid);
   }catch(err){console.log(err)}
     }
-    
+
     function showleaderboard(){
         const inputElement = document.createElement("input")
         inputElement.type = "button"

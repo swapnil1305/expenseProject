@@ -1,13 +1,17 @@
 const Razorpay = require('razorpay');
 const Order = require('../models/order');
+const jwt = require('jsonwebtoken')
+const generateAccessToken = (id,name,ispremiumuser)=>{
+    return jwt.sign({userId: id, name: name, ispremiumuser}, 'secretkey');
+}
 
 const purchasePremium = async(req, res) => {
     try{
         var rzp = new Razorpay({
-            key_id: 'rzp_test_WTmrGpvNihL9qM',
-            key_secret: '0FeVhUPtH6eJgk3jVOjHOQmY'
+            key_id: 'rzp_test_hnbezbiNp5tbWy',
+            key_secret: 'riAJCkMBZzdf2Ezj23qqnfQM'
         })
-        const amount= 2500;
+        const amount= 2700;
 
         rzp.orders.create({amount, currency: "INR"}, (err, order) => {
             if(err) {
@@ -31,11 +35,11 @@ const updateTransactionStatus = async (req, res) => {
         const order = await Order.findOne({where: {orderid: order_id}})
         const promise1 = order.update({paymentid:payment_id, status: 'SUCCESSSFUL'})
         const promise2 = req.user.update({ispremiumuser: true})
-
+        //console.log('qqqqqqqqqqqqqq')
         Promise.all([promise1, promise2]).then(() => {
-            return res.status(202).json({success: true, message: 'Transaction Successful',token: userController.generateAccessToken(userId,undefined, true)});
-        }).catch((error) => {
-            throw new Error(error)
+            return res.status(202).json({success: true, message: 'Transaction Successful', token: generateAccessToken(undefined,undefined, true)});
+        }).catch((err) => {
+            throw new Error(err)
         })
     }catch(err){
         console.log(err);
