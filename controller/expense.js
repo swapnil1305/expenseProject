@@ -14,8 +14,7 @@ const addExpense = async(req, res, next) => {
 }
 
 const getExpense = (req, res) => {
-
-    req.user.getExpenses().then(expenses=> {
+req..then(expenses=> {
         return res.status(200).json({expenses, success:true})
     }).catch(err => {
         console.log(err)
