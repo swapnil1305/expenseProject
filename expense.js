@@ -64,6 +64,11 @@ async function deleteExpense(e, expenseid) {
   }catch(err){console.log(err)}
     }
 
+    function removeExpenseFromScreen(expenseid){
+        const expenseElemId = `expense-${expenseid}`;
+        document.getElementById(expenseElemId).remove();
+    }
+
     function showleaderboard(){
         const inputElement = document.createElement("input")
         inputElement.type = "button"
@@ -76,15 +81,29 @@ async function deleteExpense(e, expenseid) {
             var leaderboardElem = document.getElementById('leaderboard')
             leaderboardElem.innerHTML += '<h1> Leader Board <h1>'
             userLeaderBoardArray.data.forEach((userDetails) => {
-                leaderboardElem.innerHTML += `<li>Name -${userDetails.name} Total Expenses -${userDetails.total_cost}</li>`
+                leaderboardElem.innerHTML += `<li>Name -${userDetails.name} Total Expenses -${userDetails.totalExpenses}</li>`
             })
         }
         document.getElementById('message').appendChild(inputElement);
     }
+
+    function download(){
+        axios.get('http://localhost:4000/user/download', { headers: {"Authorization" : token} })
+        .then((response) => {
+            if(response.status === 201){
+
+                var a = document.createElement("a");
+                a.href = response.data.fileUrl;
+                a.download = 'myexpense.csv';
+                a.click();
+            } else {
+                throw new Error(response.data.message)
+            }
     
-    function removeExpenseFromScreen(expenseid){
-        const expenseElemId = `expense-${expenseid}`;
-        document.getElementById(expenseElemId).remove();
+        })
+        .catch((err) => {
+            showError(err)
+        });
     }
 
 document.getElementById("rzp-button1").onclick = async function(e){
