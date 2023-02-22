@@ -88,10 +88,10 @@ async function deleteExpense(e, expenseid) {
     }
 
     function download(){
+        const token = localStorage.getItem('token')
         axios.get('http://localhost:4000/user/download', { headers: {"Authorization" : token} })
         .then((response) => {
-            if(response.status === 201){
-
+            if(response.status === 200){
                 var a = document.createElement("a");
                 a.href = response.data.fileUrl;
                 a.download = 'myexpense.csv';
@@ -102,7 +102,7 @@ async function deleteExpense(e, expenseid) {
     
         })
         .catch((err) => {
-            showError(err)
+            console.log(err)
         });
     }
 

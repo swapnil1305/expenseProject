@@ -18,6 +18,7 @@ const forgotpassword = async (req, res) => {
 
             sgMail.setApiKey(process.env.SENGRID_API_KEY)
 
+            
             const msg = {
                 to: email, // Change to your recipient
                 from: 'yj.rocks.2411@gmail.com', // Change to your verified sender

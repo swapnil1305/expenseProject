@@ -8,6 +8,7 @@ const User = require('./models/user');
 const Expense = require('./models/expense');
 const Order = require('./models/order')
 const Forgotpassword = require('./models/forgotpassword')
+const DownloadedFile=require('./models/downloadedFile');
 
 const userRoutes = require('./routes/user');
 const expenseRoutes = require('./routes/expense')
@@ -41,7 +42,12 @@ Order.belongsTo(User);
 User.hasMany(Forgotpassword);
 Forgotpassword.belongsTo(User);
 
-sequelize.sync()
+User.hasMany(DownloadedFile);
+DownloadedFile.belongsTo(User)
+
+sequelize
+.sync()
+// .sync({force:true})
 .then(result => { 
     app.listen(4000);
     //console.log(result);
