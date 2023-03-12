@@ -8,7 +8,6 @@ const sequelize = require('./util/database');
 const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
-
 //models--->>
 const User = require('./models/user');
 const Expense = require('./models/expense');

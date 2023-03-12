@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <h1>Welcome to the EXPENSE TRACKER app!</h1><br>
 </head>
-<h2>EXPENSE TRACKER</h2>
 <body>
+    <div class="rows">
+        <form  id="perpage">
+          Expenses Per Page : <input type="number" min="2" max="100"  name="Items_Per_Page" >
+          <button class="btn1"  type="submit" value="submit">submit</button>
+        </form> 
+      </div>
     <form onsubmit="addNewExpense(event)">
+        <div class="form">
           <label for="amount">Amount</label>
           <input type="number" name="amount" required/><br><br>
           <label for="description">Description</label>
@@ -20,16 +28,18 @@
             <option value="Shopping">Shopping</option>
             <option value="bills">Bills</option>
             <option value="entertainment">Entertainment</option>
-        </select><br><br>
-        <button type="submit">Add Expense</button><br><br><br>
+        </select>
+    </div>
+        <button class="btn" type="submit">Add Expense</button>
     </form>
         <div id="message"></div>
-        <button id="rzp-button1">BUY PREMIUM</button>
-        <button onclick="download()" id="downloadexpense">Download File</button>
+        <button class="btn1" id="rzp-button1">BUY PREMIUM</button>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <h2>Expenses</h2>
         <ul id="listOfExpenses"></ul>
+        <button class="btn1" onclick="download()" id="downloadexpense">Download File</button>
         <ul id="leaderboard"></ul>
+        <!-- <footer><div id="pagination">123</div></footer> -->
     <script src="expense.js"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 </body>

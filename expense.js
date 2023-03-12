@@ -13,7 +13,7 @@ async function addNewExpense(e){
                 addNewExpenseToUI(response.data.expenseDetails)
         }catch(err){
             console.log(err)
-            document.body.innerHTML += `<div style="color:red;">${err}<div>`;
+            //document.body.innerHTML += `<div style="color:red;">${err}<div>`;
         }
     }
 
@@ -48,7 +48,6 @@ async function addNewExpense(e){
         }).catch(err => console.log(err))
      });
 
-
 function addNewExpenseToUI(expense){
     const parentElement = document.getElementById('listOfExpenses');
     const expenseElemId = `expense-${expense.id}`;
@@ -56,6 +55,7 @@ function addNewExpenseToUI(expense){
     <button onclick='deleteExpense(event, ${expense.id})'>Delete Expense</button>
     </li>`
 }
+
 async function deleteExpense(e, expenseid) {
     try{
         const token = localStorage.getItem('token')

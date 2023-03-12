@@ -15,7 +15,9 @@ router.post('/addexpense', authenticatemiddleware.authenticate, expenseControlle
 
 router.post('/getexpense',authenticatemiddleware.authenticate, expenseController.getExpense);
 
- router.get('/download', authenticatemiddleware.authenticate, expenseController.downloadExpense);
+//router.get('/get-expenses/:page/:Items_Per_Page',authenticatemiddleware.authenticate,expenseController.getExpenses);
+
+router.get('/download', authenticatemiddleware.authenticate, expenseController.downloadExpense);
 
 router.delete('/deleteexpense/:expenseid', authenticatemiddleware.authenticate, expenseController.deleteExpense);
 

@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family:sans-serif;
+    /* background-image:url(https://www.labnol.org/images/2004/currencysymbols.jpg); */
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    font-size: medium;
+    text-align-last:center
+  }
+ .form{
+    width: 500px;
+    background-color: whitesmoke;
+    border: 10px solid rgb(32, 36, 32);
+    padding: 20px;
+    margin-left: 430px
+  }
+
+
+  ul {
+    list-style: none;
+  }
+  #users{
+    background-color: blanchedalmond;
+  }
+  
+  /* ul li {
+    padding: 5px;
+    background: #b15c5c;
+    margin: 5px 0;
+  } */
+  
+  header {
+    /* background: grey; */
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .container {
+    margin: auto;
+    width: 500px;
+    overflow: auto;
+    padding: 3rem 2rem;
+  }
+  
+  #my-form {
+    padding: 2rem;
+    background: #f4f4f4;
+  }
+  
+  #my-form label {
+    display: block;
+  }
+  
+  #my-form input[type='text'] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  #my-form input[type='number'] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    border: 0;
+    background: #610c0c;
+    color: #fff;
+    border-radius: 5px;
+    margin: 5px 0;
+    margin-left: 10px;
+  }
+  
+  .btn:hover {
+    background: #444;
+  }
+  
+  .btn1{
+    padding: 10px 15px;
+    border: 0;
+    background: #333;
+    color: #fff;
+    border-radius: 5px;
+    margin: 5px 0;
+    margin-left: 10px;
+  }
+
+  .btn1:hover {
+    background: #444;
+  }
+  .bg-dark {
+    background: #333;
+    color: #fff;
+  }
+  
+  .error {
+    background: orangered;
+    color: #fff;
+    padding: 5px;
+    margin: 5px;
+  }

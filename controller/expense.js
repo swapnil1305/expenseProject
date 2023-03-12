@@ -1,6 +1,6 @@
 const Expense = require('../models/expense');
 // const { BlobServiceClient } = require('@azure/storage-blob');
-// const { v1: uuidv1} = require('uuid');
+const { v1: uuidv1} = require('uuid');
 const User = require('../models/user');
 const DownloadedFile=require('../models/downloadedFile')
 const sequelize = require('../util/database');
@@ -37,7 +37,7 @@ const addExpense = async(req, res, next) => {
             return res.status(400).json({success: false, message: 'Parameters missing'})
         }
 
-      const expense =  Expense.create({amount, description, category, userId: req.user.id},{transaction: t})
+      const expenses =  Expense.create({amount, description, category, userId: req.user.id},{transaction: t})
             const totalExpense = Number(req.user.totalExpenses)+ Number(amount)
             await User.update({
                 totalExpenses: totalExpense
@@ -46,7 +46,7 @@ const addExpense = async(req, res, next) => {
                 transaction: t
             })
                 await t.commit();
-                res.status(200).json({expense:expense})
+                res.status(200).json({expenses:expenses})
         }catch(err){
                 await t.rollback();
                 return res.status(500).json({success:false, error:err})
