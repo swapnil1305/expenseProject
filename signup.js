@@ -8,7 +8,7 @@ async function signup(e) {
             password: e.target.password.value
         }
         //console.log(signUpDetails);
-        const response = await axios.post('http://localhost:4000/user/signup', signUpDetails)
+        const response = await axios.post('http://43.207.56.110:4000/user/signup', signUpDetails)
         if(response.status === 201){
             alert(response.data.message)
             window.location.href = "./login.html"
