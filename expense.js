@@ -9,7 +9,7 @@ async function addNewExpense(e){
         }
         console.log(expenseDetails);
         const token = localStorage.getItem('token')
-        const response = await axios.post('http://43.207.56.110:4000/expense/addexpense', expenseDetails, { headers: {'Authorization': token} })
+        const response = await axios.post('http://54.250.135.169:4000/expense/addexpense', expenseDetails, { headers: {'Authorization': token} })
                 addNewExpenseToUI(response.data.expenseDetails)
         }catch(err){
             console.log(err)
@@ -41,7 +41,7 @@ async function addNewExpense(e){
             showPremiumUserMessage()
             showleaderboard()
         }
-        axios.get('http://43.207.56.110:4000/expense/getexpense', { headers: {'Authorization': token} }).then(response => {
+        axios.get('http://54.250.135.169:4000/expense/getexpense', { headers: {'Authorization': token} }).then(response => {
             response.data.expenses.forEach(expense => {
                 addNewExpenseToUI(expense);
             })
@@ -59,7 +59,7 @@ function addNewExpenseToUI(expense){
 async function deleteExpense(e, expenseid) {
     try{
         const token = localStorage.getItem('token')
-        await axios.delete(`http://43.207.56.110:4000/expense/deleteexpense/${expenseid}`,{ headers: {'Authorization': token} })
+        await axios.delete(`http://54.250.135.169:4000/expense/deleteexpense/${expenseid}`,{ headers: {'Authorization': token} })
     removeExpenseFromScreen(expenseid);
   }catch(err){console.log(err)}
     }
@@ -75,7 +75,7 @@ async function deleteExpense(e, expenseid) {
         inputElement.value = "Show Leaderboard"
         inputElement.onclick = async() => {
             const token = localStorage.getItem('token')
-            const userLeaderBoardArray = await axios.get('http://43.207.56.110:4000/premium/showLeaderBoard', { headers: {'Authorization': token} })
+            const userLeaderBoardArray = await axios.get('http://54.250.135.169:4000/premium/showLeaderBoard', { headers: {'Authorization': token} })
             console.log(userLeaderBoardArray)
 
             var leaderboardElem = document.getElementById('leaderboard')
@@ -89,7 +89,7 @@ async function deleteExpense(e, expenseid) {
 
     function download(){
         const token = localStorage.getItem('token')
-        axios.get('http://43.207.56.110:4000/user/download', { headers: {"Authorization" : token} })
+        axios.get('http://54.250.135.169:4000/user/download', { headers: {"Authorization" : token} })
         .then((response) => {
             if(response.status === 200){
                 var a = document.createElement("a");
@@ -108,14 +108,14 @@ async function deleteExpense(e, expenseid) {
 
 document.getElementById("rzp-button1").onclick = async function(e){
     const token = localStorage.getItem('token')
-    const response = await axios.get('http://43.207.56.110:4000/purchase/premiummembership',{ headers: {"Authorization" : token}})
+    const response = await axios.get('http://54.250.135.169:4000/purchase/premiummembership',{ headers: {"Authorization" : token}})
     console.log(response);
     var options = 
     {
         "key_id": response.data.key_id,
         "order_id": response.data.order.id,
         "handler": async function (response) {
-            const res = await axios.post('http://43.207.56.110:4000/purchase/updatetransactionstatus',{
+            const res = await axios.post('http://54.250.135.169:4000/purchase/updatetransactionstatus',{
                order_id: options.order_id,
                payment_id: response.razorpay_payment_id,
             },{headers: {"Authorization": token }})

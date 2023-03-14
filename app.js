@@ -37,6 +37,7 @@ app.use(express.json());  //for handling jsons
 app.use(compression());
 //app.use(morgan('combined', {stream: accessLogStream}));
 
+
 //middlewares--->>
 app.use('/user', userRoutes);
 app.use('/expense', expenseRoutes);

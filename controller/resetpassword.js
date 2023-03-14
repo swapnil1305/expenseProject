@@ -24,7 +24,7 @@
 //                 from: 'yj.rocks.2411@gmail.com', // Change to your verified sender
 //                 subject: 'Sending with SendGrid is Fun',
 //                 text: 'and easy to do anywhere, even with Node.js',
-//                 html: `<a href="http://43.207.56.110:4000/password/resetpassword/${id}">Reset password</a>`,
+//                 html: `<a href="http://54.250.135.169:4000/password/resetpassword/${id}">Reset password</a>`,
 //             }
 
 //             sgMail
@@ -159,7 +159,7 @@ exports.forgotPassword = async (req,res,next) => {
         to: recievers,
         subject: 'forgotpass please reset',
         textContent: `Follow the link and reset password`,
-        htmlContent: `Click on the link below to reset password <br> <a href="http://43.207.56.110:4000/password/resetpassword/${id}">Reset password</a>`,
+        htmlContent: `Click on the link below to reset password <br> <a href="http://54.250.135.169:4000/password/resetpassword/${id}">Reset password</a>`,
 
     }).then((response)=>{
         //console.log('after transaction');
