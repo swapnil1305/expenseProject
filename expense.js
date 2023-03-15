@@ -51,15 +51,15 @@ async function addNewExpense(e){
 function addNewExpenseToUI(expense){
     const parentElement = document.getElementById('listOfExpenses');
     const expenseElemId = `expense-${expense.id}`;
-    parentElement.innerHTML += `<li id=${expenseElemId}>${expense.amount}-${expense.description}-${expense.category}
-    <button onclick='deleteExpense(event, ${expense.id})'>Delete Expense</button>
+    parentElement.innerHTML += `<li id=${expenseElemId}> Rs. ${expense.amount} ==> ${expense.description} ==> ${expense.category}
+    <button class="btn" onclick='deleteExpense(event, ${expense.id})'>Delete Expense</button>
     </li>`
 }
 
 async function deleteExpense(e, expenseid) {
     try{
         const token = localStorage.getItem('token')
-        await axios.delete(`http://54.250.135.169:4000/expense/deleteexpense/${expenseid}`,{ headers: {'Authorization': token} })
+        await axios.delete(`http://54.250.135.169:4000/expense/deleteexpense/${expenseid}`,{ headers: {'Authorization': token}})
     removeExpenseFromScreen(expenseid);
   }catch(err){console.log(err)}
     }
@@ -109,6 +109,7 @@ async function deleteExpense(e, expenseid) {
 document.getElementById("rzp-button1").onclick = async function(e){
     const token = localStorage.getItem('token')
     const response = await axios.get('http://54.250.135.169:4000/purchase/premiummembership',{ headers: {"Authorization" : token}})
+    console.log("yoooyoo3")
     console.log(response);
     var options = 
     {

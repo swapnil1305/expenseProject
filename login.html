@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Document</title>
-    <h2>LOGIN</h2>
+    <h1 class="h1">$ EXPENSE TRACKER $</h1>
+    <h2 class="h2">LOGIN</h2>
 </head>
 <body>
     <form onsubmit="login(event)">
         <div class="form">
-       <label for="email">Email</label>
+       <label for="email">Enter email-id</label><br>
        <input type="email" name="email" required/><br>
-       <label for="password">Password</label>
-       <input type="password" name="password" required/><br>
-       <button>Login</button>
+       <label for="password">Enter Password</label><br>
+       <input type="password" name="password" required/><br><br>
+       <button class="btn">Login</button>
+       <button class="btn" onclick="forgotpassword()"> Forgot password</button>
     </div>
     </form><br>
-    <button onclick="forgotpassword()"> Forgot password</button>
-    <a href="./signup.html">New User - Signup now</a>
+    <a class="btn" href="./signup.html">New User - Signup now</a>
 
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->

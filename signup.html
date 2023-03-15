@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Document</title>
-    <h1 style="color:rgb(173, 33, 33)">Welcome To Swapnil's Website!!!</h1>
-</head><h2>SIGN UP</h2>
+    <!-- <h1 style="color:rgb(173, 33, 33)">Welcome To Swapnil's Website!!!</h1> -->
+    <h1 class="h1">$ EXPENSE TRACKER $</h1>
+</head>
+<h2 class="h2">SIGN UP</h2>
 <body>
     <form onsubmit="signup(event)">
         <div class="form">
-        <label for="name">Enter Name</label>
+        <label for="name">Enter Name</label><br>
         <input type="text" name="name" required /><br>
-        <label for="email">Enter e-mail id</label>
+        <label for="email">Enter e-mail id</label><br>
         <input type="email" name="email" required /><br>
-        <label for="password">Enter Password</label>
-        <input type="password" name="password" required /><br>
-        <button>Signup</button><br>
+        <label for="password">Enter Password</label><br>
+        <input type="password" name="password" required /><br><br>
+        <button class="btn">Signup</button><br>
     </div>
-    </form>
-    <a href="./login.html">Existing User - Login</a>
+    </form><br><br>
+    <a class="btn" href="./login.html">Existing User - Login</a>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="./signup.js"></script>
