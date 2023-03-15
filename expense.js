@@ -63,6 +63,7 @@ async function deleteExpense(e, expenseid) {
     removeExpenseFromScreen(expenseid);
   }catch(err){console.log(err)}
     }
+    
 
     function removeExpenseFromScreen(expenseid){
         const expenseElemId = `expense-${expenseid}`;
