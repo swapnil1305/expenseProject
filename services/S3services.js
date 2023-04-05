@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 
+
 const uploadToS3 = (data, filename) => {
     const BUCKET_NAME = 'expensetrack1';
     const IAM_USER_KEY = 'AKIA3Z26O42LT6F6WC65';

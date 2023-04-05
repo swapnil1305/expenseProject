@@ -1,78 +1,48 @@
-const path = require('path');
-require('dotenv').config()
-//const fs = require('fs')
-const express = require('express');
+const express=require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-const sequelize = require('./util/database');
-//const helmet = require('helmet');
-const compression = require('compression');
-//const morgan = require('morgan');
-//models--->>
-const User = require('./models/user');
-const Expense = require('./models/expense');
-const Order = require('./models/order')
-const Forgotpassword = require('./models/forgotpassword')
-const DownloadedFile=require('./models/downloadedFile');
+const helmet=require('helmet');
+const morgan=require('morgan');
+const fs=require('fs');
+const path=require('path');
 
-//routers--->>
-const userRoutes = require('./routes/user');
-const expenseRoutes = require('./routes/expense')
-const purchaseRoutes = require('./routes/purchase');
-const resetPasswordRoutes = require('./routes/resetpassword')
-const premiumFeatureRoutes = require('./routes/premiumFeature');
-const downloadFilesRoute= require('./routes/allDownload')
+const mongoose = require('mongoose')
 
-const app = express();
+const cors=require('cors');
+const app=express();
 
-//const dotenv = require('dotenv');
-//dotenv.config();
+// const accessLogStream=fs.createWriteStream(path.join(__dirname,'access.log'),
+// {flag:'a'}
+// );
 
-//const accessLogStream = fs.createReadStream(path.join(__dirname, 'access.log'), {flags: 'a'})
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json()); //for handling forms
-app.use(express.json());  //for handling jsons
-//app.use(helmet());
-app.use(compression());
-//app.use(morgan('combined', {stream: accessLogStream}));
+// app.use(helmet());
+// app.use(morgan('combined',{stream:accessLogStream}));
 
-console.log("yooooo")
-//middlewares--->>
-app.use('/user', userRoutes);
-app.use('/expense', expenseRoutes);
-app.use('/purchase', purchaseRoutes);
-app.use('/premium', premiumFeatureRoutes);
-app.use('/password', resetPasswordRoutes);
-app.use('/download', downloadFilesRoute);
+const userRoutes=require('./routes/user');
+const expenseRoutes=require('./routes/expense');
+const purchaseRoutes=require('./routes/purchase');
+const premiumFeatureRoutes=require('./routes/premiumFeature');
+const passwordRoutes=require('./routes/password');
 
-// app.use((req, res) => {
-//     console.log('urlll===>>>>>', req.url)
-//     res.sendFile(path.join(__dirname, `public/${req.url}`));
-// })
+
+app.use(bodyParser.json({ extended: false }));
+
+app.use('/user',userRoutes);
+app.use('/expense',expenseRoutes);
+app.use('/purchase',purchaseRoutes);
+app.use('/premium',premiumFeatureRoutes);
+app.use('/password',passwordRoutes);
 
 app.use((req, res) => {
     console.log(req.url)
-    res.sendFile(path.join(__dirname, `${req.url}`))
+    res.sendFile(path.join(__dirname, `frontend/${req.url}`))
 })
 
-User.hasMany(Expense);
-Expense.belongsTo(User);
-
-User.hasMany(Order);
-Order.belongsTo(User);
-
-User.hasMany(Forgotpassword);
-Forgotpassword.belongsTo(User);
-
-User.hasMany(DownloadedFile);
-DownloadedFile.belongsTo(User)
-
-sequelize
-.sync()
-// .sync({force:true})
-.then(result => { 
-    app.listen(4000);
-    //console.log(result);
+mongoose
+.connect('mongodb+srv://swapnil:swapnil7@expense.vjiidlg.mongodb.net/expense?retryWrites=true&w=majority')
+.then(result=>{
+   app.listen(5000);
 })
-.catch(err => console.log(err));
+.catch(err=>{
+    console.log(err);
+});

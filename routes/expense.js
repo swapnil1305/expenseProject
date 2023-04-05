@@ -1,16 +1,22 @@
 const express = require('express');
 
-const expenseController = require('../controller/expense');
-const userauthentication = require('../middleware/auth')
-
+const expenseController = require('../controllers/expense');
+const userauthentication=require('../middleware/auth')
+;
 const router = express.Router();
 
-router.post('/addexpense',userauthentication.authenticate, expenseController.addExpense)
+router.post('/add-expense',userauthentication.authenticate,expenseController.postAddExpense);
 
-router.get('/getexpense', userauthentication.authenticate, expenseController.getExpense)
+router.get('/getAllUrl',userauthentication.authenticate,expenseController.downloadAllUrl);
 
-//router.get('/get-expenses/:page/:Items_Per_Page',userauthentication.authenticate,expenseController.getExpenses);
+router.get('/download',userauthentication.authenticate,expenseController.downloadexpense);
 
-router.delete('/deleteexpense/:expenseid', userauthentication.authenticate, expenseController.deleteExpense)
+router.get('/get-expenses/:page/:Items_Per_Page',userauthentication.authenticate,expenseController.getExpenses);
 
-module.exports = router; 
+router.delete('/delete-expense/:id',userauthentication.authenticate,expenseController.deleteExpense);
+
+
+
+
+
+module.exports = router;

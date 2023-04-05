@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const expenseSchema = new Schema({
-    price: {
-        type: Number,
+const orderSchema = new Schema({
+    paymentid: {
+        type: String, 
+    },
+    orderid: {
+        type: String, 
         required: true
     },
-    description: {
+    status: {
         type: String,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true
+        required: true 
     },
     userId: {
         type: Schema.Types.ObjectId,
@@ -20,4 +19,4 @@ const expenseSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Expense', expenseSchema);
+module.exports = mongoose.model('Order', orderSchema);
